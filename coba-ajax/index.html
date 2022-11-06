@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Belajar Dasar Ajax</title>
+  </head>
+  <body>
+    <h1>Tutorial Ajax</h1>
+    <div id="hasil"></div>
+    <button onclick="loadContent()">Load Content</button>
+
+    <script>
+      function loadContent() {
+        // membuat object ajax
+        var xhr = new XMLHttpRequest()
+        var url = 'https://api.github.com/users/petanikode'
+
+        // menentukan fungsi handler untuk event
+
+        /*
+            xhr.onreadystatechange = function() { ... };
+            xhr.onload = function() { ... };
+            xhr.onerror = function() { ... };
+            xhr.onprogress = function() { ... };
+        */
+
+        xhr.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById('hasil').innerHTML = this.responseText
+          }
+        }
+
+        // menemtukan method dan url
+        xhr.open('GET', url, true)
+
+        // mengirim request
+        xhr.send()
+      }
+    </script>
+  </body>
+</html>
